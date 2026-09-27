@@ -1001,7 +1001,7 @@ label.pick input{width:14px;height:14px}
 .ainote a{color:#0b6e66;font-weight:700}.ainote button{margin-left:8px;border:1px solid #d9b93c;background:#fff;border-radius:6px;padding:2px 9px;font:700 12px var(--sans);cursor:pointer}
 .ainote.min{padding:3px 12px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:24px}.ainote.min button{display:none}
 #verBadge{position:fixed;right:10px;bottom:6px;z-index:4000;background:rgba(11,31,58,.88);color:#dbe4f0;font:600 10.5px var(--sans);padding:3px 8px;border-radius:6px;pointer-events:auto}
-.leaflet-bottom.leaflet-right{margin-bottom:22px}
+.leaflet-bottom.leaflet-right{margin-bottom:0}
 .pcb{display:inline-block;background:#e8f1fb;color:#1d4f91;border:1px solid #bcd3ee;border-radius:8px;padding:0 6px;font-size:10.5px;font-weight:700;margin-left:3px;white-space:nowrap}
 .rtabs{display:flex;gap:3px;background:rgba(255,255,255,.1);border-radius:8px;padding:3px}
 .rtabs button{background:transparent;color:#c3cee0;border:0;border-radius:6px;padding:5px 14px;font:700 12.5px var(--sans);cursor:pointer}
@@ -1015,6 +1015,47 @@ label.pick input{width:14px;height:14px}
 .lflag{display:inline-flex;align-items:center;justify-content:center;width:28px;height:20px;border:2px solid #d9822b;border-radius:3px;background:linear-gradient(#e33 0 33%,#fff 0 66%,#27a 0)}
 .lsel{display:inline-block;width:26px;height:18px;border:3px solid #FFD400;box-shadow:0 0 0 2px #081729;border-radius:4px}
 .lnum{font-size:15px;color:#0B1F3A}
+
+/* v29 */
+#appFoot{position:fixed;left:0;right:0;bottom:0;z-index:3500;display:flex;align-items:center;gap:10px;background:#FFF8E1;border-top:1px solid #F2D46B;padding:3px 10px;box-shadow:0 -2px 8px rgba(0,0,0,.06)}
+#appFoot .ainote{margin:0;border:0;background:transparent;padding:2px 0;flex:1 1 auto;min-width:0;font-size:12px}
+#appFoot .ainote.min{max-height:22px;padding:2px 0}
+#appFoot #verBadge{position:static;flex:0 0 auto;white-space:nowrap}
+body{padding-bottom:var(--footH,34px)}
+.side{height:calc(100vh - var(--footH,34px))!important;max-height:calc(100vh - var(--footH,34px))!important}
+.pickbar{bottom:calc(var(--footH,34px) + 12px)!important}
+.xp-toast{bottom:calc(var(--footH,34px) + 14px)!important}
+.hdrnav .citybox{display:none!important}
+#sideShow{display:none!important}
+.ptabs button[data-p]{display:none}
+.ptitle{flex:1;color:#fff;font:800 13px var(--sans);padding:7px 8px}
+.pbtns{display:flex;gap:4px;background:rgba(255,255,255,.08);border-radius:9px;padding:3px}
+.pbtns button{border:0;background:transparent;color:#c3cee0;font:700 13px var(--sans);padding:6px 12px;border-radius:7px;cursor:pointer}
+.pbtns button:hover{color:#fff}
+.pbtns button.on{background:#E8A33D;color:#081729}
+.ubox input{width:360px;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:7px 10px;font:600 13px var(--sans);background:#fff}
+.ubox input:focus{outline:3px solid #FFD400;outline-offset:1px}
+@media(max-width:1350px){.ubox input{width:260px}}
+@media(max-width:1100px){.ubox input{width:200px}}
+.sres{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:6px}
+.sres .srt{color:#fff;font:700 12.5px var(--sans);padding:2px 4px 2px;display:flex;justify-content:space-between;gap:6px}
+.sres .srt button{background:none;border:0;color:#E8A33D;cursor:pointer;font:700 12px var(--sans)}
+.srh2{color:#E8A33D;font:800 10.5px var(--sans);text-transform:uppercase;letter-spacing:.05em;margin:8px 4px 2px}
+.sri{display:flex;gap:8px;align-items:center;text-align:left;width:100%;background:transparent;border:0;border-radius:7px;padding:5px 6px;color:#e6edf7;cursor:pointer;font:13px var(--sans)}
+.sri:hover,.sri.act{background:rgba(232,163,61,.2)}
+.sri .sic{flex:0 0 26px;text-align:center;font-size:15px}.sri .sic img{width:24px;height:17px;border-radius:2px;object-fit:cover;vertical-align:middle}
+.sri .stx{display:flex;flex-direction:column;min-width:0;flex:1}.sri small{color:#9fb0c6;font-size:11.5px}
+.sres[hidden]{display:none!important}
+.snone{color:#9fb0c6;font-size:12.5px;padding:4px}
+.fbar2{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 18px 0}
+.fbar2 .f2{display:inline-flex;align-items:center;gap:6px;font:700 12.5px var(--sans);color:#34465c}
+.fbar2 select{border:2px solid #0B1F3A;border-radius:8px;padding:5px 8px;font:600 12.5px var(--sans);background:#fff;cursor:pointer;max-width:300px}
+.f2chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.f2cnt{font:700 12px var(--sans);color:#34465c}
+.f2chip{display:inline-flex;align-items:center;gap:2px;background:#fff8ea;border:1px solid #f3d6a8;border-radius:999px;padding:1px 3px 1px 9px;font:600 12px var(--sans);color:#0B1F3A}
+.f2chip button{border:0;background:transparent;cursor:pointer;font-weight:800;color:#8a5a00;padding:0 4px}
+@media(max-width:760px){#appFoot{position:static;flex-wrap:wrap}#appFoot .ainote{flex-basis:100%}#appFoot #verBadge{white-space:normal}body{padding-bottom:0}.ubox input{width:100%}.ubox{flex:1 1 100%}}
+.f2clr{border:0;background:none;color:#0b6e66;font:700 12px var(--sans);cursor:pointer;text-decoration:underline}
 </style>
 <style>
 :root{--navy:#0B1F3A;--navy-light:#16335c;--navy-deep:#081729;--amber:#E8A33D;--teal:#2EC4B6;--teal-deep:#1f9d92;
@@ -1123,11 +1164,8 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
  <div class="fg"><label for="q">Search</label><input id="q" type="search" placeholder="Country, IOC code, language, disease…"></div>
  <div class="fg"><label for="fa">Continent</label><select id="fa"><option value="">All</option></select></div>
  <div class="fg"><label for="fsr">Subregion</label><select id="fsr"><option value="">All</option></select></div>
- <div class="fg"><label for="fk">Type</label><select id="fk"><option value="">All</option><option>Country</option><option>Territory</option></select></div>
- <div class="fg"><label for="fu">U.S. consulate city</label><select id="fu"><option value="">Any</option><option value="__emb">Embassy in Washington, D.C.</option><option>New York</option><option>Los Angeles</option><option>Chicago</option><option>Houston</option><option>Miami</option><option>San Francisco</option><option>Atlanta</option><option>Boston</option><option value="__none">No embassy or major-city consulate</option></select></div>
- <div class="fg"><label for="fn">CDC travel notice</label><select id="fn"><option value="">All destinations</option><option value="3">Level 3 or higher</option><option value="2">Level 2 or higher</option><option value="1">Any notice</option><option value="p">Global Polio notice</option></select></div>
+  <div class="fg"><label for="fn">CDC travel notice</label><select id="fn"><option value="">All destinations</option><option value="4">Level 4 (avoid all travel)</option><option value="3">Level 3 or higher</option><option value="2">Level 2 or higher</option><option value="1">Any notice</option><option value="p">Global Polio notice</option></select></div>
  <div class="fg"><label for="fv">Vector-borne risk</label><select id="fv"><option value="">All</option><option value="Malaria">Malaria</option><option value="Yellow fever">Yellow fever</option><option value="Dengue">Dengue</option></select></div>
- <div class="fg"><label for="fh">Heat acclimatization</label><select id="fh"><option value="">All</option><option>Low</option><option>Moderate</option><option>High</option></select></div>
  <div class="fg"><label for="fs">Sort</label><select id="fs"><option value="continent">Continent and region</option><option value="name">Name A–Z</option><option value="alert">CDC notice level</option><option value="travel">Distance to Washington, DC</option></select></div>
 
 </div>
@@ -1258,16 +1296,14 @@ drawStats();
 let tab='cards';
 function filt(){
  const q=document.getElementById('q').value.trim().toLowerCase(),fa=document.getElementById('fa').value,fn=document.getElementById('fn').value,
-  fv=document.getElementById('fv').value,fh=document.getElementById('fh').value,fc='',fs=document.getElementById('fs').value;
+  fv=document.getElementById('fv').value,fc='',fs=document.getElementById('fs').value;
  let rs=D.filter(r=>{
   if(fa&&r.assoc!==fa)return false;
   { const e=document.getElementById('ftr'); if(e&&e.value&&!(r.transit||[]).includes(e.value)) return false; }
   { const fsr=document.getElementById('fsr').value; if(fsr&&r.sub!==fsr) return false; }
-  { const fk=document.getElementById('fk').value; if(fk&&r.kind!==fk) return false; }
-  { const fu=document.getElementById('fu').value, u=r.usreps||{}; if(fu==='__emb'&&!u.emb) return false; if(fu==='__none'&&(u.emb||(u.cities||[]).length)) return false; if(fu&&fu[0]!=='_'&&!(u.cities||[]).includes(fu)) return false; }
+  { const e=document.getElementById('fdz'); if(e&&e.value&&!dzMatch(r,e.value)) return false; }
   if(fn==='p'){if(!r.polio)return false}else if(fn&&r.alevel<+fn)return false;
   if(fv&&!r.vector.includes(fv))return false;
-  if(fh&&r.heat_accl!==fh)return false;
   if(fc){const c=r.cons||{}; if(fc==='la'&&!c.la)return false; if(fc==='hon'&&!c.hon)return false; if(fc==='dc'&&(c.la||c.hon||!c.dc))return false; if(fc==='none'&&(c.la||c.dc))return false;}
   if(q&&![r.name,(r.aliases||[]).join(' '),r.sov||'',r.kind||'',r.ioc,r.capital,r.lang,r.vector,r.comms,r.diet,r.airports,(r.transit||[]).map(c=>c+' '+((AIR[c]||[''])[0])).join(' '),(r.intl||[]).map(a=>a[0]+' '+a[1]).join(' '),((r.usreps||{}).cities||[]).join(' '),r.alerts.map(a=>a[1]).join(' ')].join(' ').toLowerCase().includes(q))return false;
   return true;});
@@ -1429,7 +1465,7 @@ function render(){
  if(map){const ids=new Set(rs.map(r=>r.ioc));Object.entries(mk).forEach(([k,m])=>ids.has(k)?m.addTo(map):map.removeLayer(m)); MAPX.apply(ids);
   if(tab==='map') focusMap(rs);}
 }
-function isFiltered(){return ['q','fa','fsr','fk','fu','ftr','fn','fv','fh'].some(id=>document.getElementById(id).value.trim()!=='');}
+function isFiltered(){return ['q','fa','fsr','ftr','fdz','fn','fv'].some(id=>document.getElementById(id).value.trim()!=='');}
 function focusMap(rs){
  const pts=rs.filter(r=>r.lat!==null).map(r=>[r.lat,r.lon]);
  if(!pts.length) return;
@@ -1448,8 +1484,8 @@ function setTab(t){tab=t;document.body.classList.toggle('tab-map',t==='map'); se
  document.getElementById('grid').style.display=t==='cards'?'':'none';document.getElementById('mapwrap').style.display=t==='map'?'block':'none';
  if(t==='map'){if(!map)initMap();setTimeout(()=>{map.invalidateSize();render();},60);} else render();}
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.t)));
-let qt;['q','fa','fsr','fk','fu','fn','fv','fh','fs'].forEach(id=>document.getElementById(id).addEventListener(id==='q'?'input':'change',()=>{ if(id==='q'){clearTimeout(qt);qt=setTimeout(render,300);} else render(); }));
-document.getElementById('clr').addEventListener('click',()=>{['q','fa','fsr','fk','fu','ftr','fn','fv','fh'].forEach(id=>{const e=document.getElementById(id); if(e) e.value='';});document.getElementById('fs').value='continent';render();});
+let qt;['q','fa','fsr','fn','fv','fs'].forEach(id=>document.getElementById(id).addEventListener(id==='q'?'input':'change',()=>{ if(id==='q'){clearTimeout(qt);qt=setTimeout(render,300);} else render(); }));
+document.getElementById('clr').addEventListener('click',()=>{['q','fa','fsr','ftr','fdz','fn','fv'].forEach(id=>{const e=document.getElementById(id); if(e) e.value='';});document.getElementById('fs').value='continent';render();});
 document.getElementById('notes').innerHTML=`Destination list: CDC Travelers' Health complete list of destinations (https://wwwnc.cdc.gov/travel/destinations/list), retrieved September 25, 2026; 'see …' entries on that list appear as search aliases on the destination they point to. The retrieved copy of the list was missing sections D–F, H, K–L, N–Q, U, and Y–Z; those destinations were filled from CDC's standard destination list and should be checked against the live page. CDC Travel Health Notices: CDC notices page and search index, refreshed September 24, 2026; Global Polio and Global Measles notice listings from the same retrieval. Destination pages open inside the app in a viewer (or in a new tab); CDC link addresses marked * were generated from the destination name and have not been checked, and every card also links to the CDC destination list. Profile fields (languages, travel time from LAX, time difference, heat acclimatization, mosquito-borne disease risk) come from the LA28 public health profile set and are planning estimates; U.S. embassy addresses come from the list of resident embassies in Washington, D.C., and consulates in eight major U.S. cities (New York, Los Angeles, Chicago, Houston, Miami, San Francisco, Atlanta, Boston) from Wikipedia's list of diplomatic missions in the United States (retrieved September 27, 2026; career consulates only). Territories added from the CDC list have basic fields only. The United States is not a CDC destination and is not listed. The Refresh from CDC button reloads Travel Health Notices on demand, directly or through an optional Google Apps Script relay, and matches each notice to destinations by name; global notices (polio, measles, dengue lists) and destination profile fields are not refreshed by it. Check CDC before operational use.`;
 
 function filterSummaryP(){ const f=[['fa','Association'],['fn','CDC notice'],['fv','Vector'],['fh','Heat acclimatization'],['fc','Consular office']]
@@ -1726,7 +1762,7 @@ function printProfiles(list){
   a{color:#0b6e66}.u{color:#8a97a8;font-size:9px;word-break:break-all}</style></head><body>
   <div class="top"><div><b style="font-size:14px">CDC Travelers' Health — Destination Public Health Profiles</b><br><span style="color:#5B6B7E">${list.length} profile${list.length>1?'s':''} · printed ${new Date().toLocaleString([], {dateStyle:'medium',timeStyle:'short'})} · CDC data: ${esc(document.getElementById('upd').textContent)}</span></div><span class="dr">⚠ DRAFT – PROTOTYPE</span></div>
   ${list.map(prof).join('')}
-  <p style="color:#5B6B7E;font-size:9px">AI-assisted profile — AI can make mistakes; verify with CDC Travelers' Health (wwwnc.cdc.gov/travel), the primary source of truth. Airport links open live flight information on FlightAware. Travel times are estimates to Washington Dulles (IAD). App v28, built Sep 27, 2026, 11:32 AM ET.</p></body></html>`); d.close();
+  <p style="color:#5B6B7E;font-size:9px">AI-assisted profile — AI can make mistakes; verify with CDC Travelers' Health (wwwnc.cdc.gov/travel), the primary source of truth. Airport links open live flight information on FlightAware. Travel times are estimates to Washington Dulles (IAD). App v30, built Sep 27, 2026, 12:07 PM ET.</p></body></html>`); d.close();
  setTimeout(()=>{ try{ f.contentWindow.focus(); f.contentWindow.print(); }catch(e){ XP.toast('Printing is blocked here.'); } setTimeout(()=>f.remove(),60000); },400);
  XP.toast('Choose "Save as PDF" in the print dialog.',4000); }
 document.addEventListener('click',e=>{ const a=e.target.closest('.prtp'); if(!a) return; e.preventDefault(); e.stopPropagation(); printProfiles([BYIOC[a.dataset.ioc]]); },true);
@@ -1886,15 +1922,15 @@ const LS={get:k=>{try{return localStorage.getItem('cdcapp_'+k)}catch(e){return n
  drag(document.getElementById('rzSide'),x=>{ const w=Math.max(220,Math.min(520,x)); document.documentElement.style.setProperty('--sideW',w+'px'); LS.set('sidew',w); });
  document.querySelector('.ptabs').insertAdjacentHTML('beforeend','<button type="button" id="sideHide" class="sidehide" title="Hide the left pane">◂</button>');
  document.body.insertAdjacentHTML('beforeend','<button type="button" id="sideShow" title="Show search and hierarchy">▸ Search</button>');
- const setSide=hide=>{ document.body.classList.toggle('side-min',hide); LS.set('sidemin',hide?'1':'0'); setTimeout(fitMap,60); };
- document.getElementById('sideHide').onclick=()=>setSide(true); document.getElementById('sideShow').onclick=()=>setSide(false); setSide(LS.get('sidemin')==='1');
+ const setSide=hide=>{ document.body.classList.toggle('side-min',hide); LS.set('sidemin29',hide?'1':'0'); setTimeout(fitMap,60); };
+ document.getElementById('sideHide').onclick=()=>setSide(true); document.getElementById('sideShow').onclick=()=>setSide(false); setSide(LS.get('sidemin29')!=='0');
  window.addEventListener('resize',()=>fitMap());
 })();
 function drag(h,move){ h.addEventListener('pointerdown',e=>{ e.preventDefault(); h.setPointerCapture(e.pointerId); document.body.classList.add('dragging');
  const mv=ev=>{ move(ev.clientX); if(map) map.invalidateSize({pan:false}); }; const up=()=>{ h.removeEventListener('pointermove',mv); h.removeEventListener('pointerup',up); document.body.classList.remove('dragging'); fitMap(); };
  h.addEventListener('pointermove',mv); h.addEventListener('pointerup',up); }); }
 function fitMap(){ const m=document.getElementById('map'); if(!m) return; const top=m.getBoundingClientRect().top+window.scrollY;
- const h=Math.max(380, window.innerHeight-(top-window.scrollY)-12); m.style.setProperty('height',h+'px','important');
+ const h=Math.max(380, window.innerHeight-(top-window.scrollY)-12-(e=>e&&getComputedStyle(e).position==='fixed'?e.offsetHeight:0)(document.getElementById('appFoot'))); m.style.setProperty('height',h+'px','important');
  const ip=document.getElementById('infopane'); if(ip) ip.style.height=h+'px'; if(map) map.invalidateSize({pan:false}); }
 // on the map tab, the selection bar and results/export live in the details pane
 function placePanels(){ const onMap=tab==='map'; const rcw=document.querySelector('.rcw'), sb=document.getElementById('selbar'), grid=document.getElementById('grid');
@@ -1950,7 +1986,7 @@ function intlHTML(r){ const L=r.intl||[]; if(!L.length) return apHTML(r.airports
  try{ if(localStorage.getItem(k)==='1') n.classList.add('min'); }catch(e){}
  document.getElementById('aiOk').onclick=()=>{ n.classList.add('min'); try{localStorage.setItem(k,'1')}catch(e){} setTimeout(fitMap,50); };
  n.addEventListener('click',e=>{ if(n.classList.contains('min')&&!e.target.closest('a')&&!e.target.closest('button')){ n.classList.remove('min'); setTimeout(fitMap,50); } });
- document.body.insertAdjacentHTML('beforeend','<div id="verBadge" title="AI-assisted draft prototype — verify with CDC Travelers&#39; Health">CDC Destination Profiles · v28 · Sep 27, 2026, 11:32 AM ET · AI-assisted, verify with CDC</div>');
+ document.body.insertAdjacentHTML('beforeend','<div id="verBadge" title="AI-assisted draft prototype — verify with CDC Travelers&#39; Health">CDC Destination Profiles · v30 · Sep 27, 2026, 12:07 PM ET · AI-assisted, verify with CDC</div>');
 })();
 
 function transitHTML(r){ const L=r.transit||[]; if(!L.length) return '';
@@ -1960,7 +1996,7 @@ function transitHTML(r){ const L=r.transit||[]; if(!L.length) return '';
 (function(){ const all=[...new Set(D.flatMap(r=>r.transit||[]))].sort((a,b)=>((AIR[a]||[a])[0]).localeCompare((AIR[b]||[b])[0]));
  const fg=document.createElement('div'); fg.className='fg';
  fg.innerHTML='<label for="ftr">Transit airport</label><select id="ftr"><option value="">Any</option>'+all.map(c=>`<option value="${c}">${esc((AIR[c]||[c])[0])} (${c})${PRECLEAR.includes(c)?' · preclearance':''}</option>`).join('')+'</select>';
- const anchor=document.getElementById('fu').closest('.fg'); anchor.parentNode.insertBefore(fg,anchor);
+ const anchor=document.getElementById('fn').closest('.fg'); anchor.parentNode.insertBefore(fg,anchor);
  document.getElementById('ftr').addEventListener('change',()=>render()); })();
 
 // ================= right pane: Details | Legend =================
@@ -1991,6 +2027,116 @@ function updLegend(){ const el=document.getElementById('dynLeg'); if(!el||!map) 
  if(typeof cityMk!=='undefined'&&cityMk&&map.hasLayer(cityMk)) items.push(['<span style="font-size:18px">📍</span>','City pin','Searched city with its country’s CDC notices']);
  el.innerHTML=items.map(([ic,t,d])=>`<div class="lrow"><div class="lic">${ic}</div><div><b>${t}</b><div class="lde">${d}</div></div></div>`).join('');
 }
+// ================= v29: AI note at the bottom, header Search / Hierarchy buttons, one search box, Disease and Country A–Z above the map =================
+const DZ=[['Malaria',/malaria/i],['Dengue',/dengue/i],['Yellow fever',/yellow fever/i],['Chikungunya',/chikungunya/i],['Oropouche',/oropouche/i],['Zika',/zika/i],
+ ['Measles',/measles/i,'measles'],['Polio',/polio/i,'polio'],['Diphtheria',/diphtheria/i],['Ebola',/ebola/i],['Marburg',/marburg/i],['Mpox',/mpox/i],['Cholera',/cholera/i],
+ ['Hantavirus (Andes virus)',/hantavirus|andes virus/i],['Sleeping sickness',/sleeping sickness|trypanosom/i],['Meningococcal disease',/meningococc/i],['Hepatitis A',/hepatitis a\b/i],
+ ['Typhoid and paratyphoid',/typhoid/i],['Rabies',/rabies/i],['Salmonella',/salmonella/i],['Rocky Mountain spotted fever',/spotted fever/i],['Ciguatera',/ciguatera/i],
+ ['Avian influenza',/avian|h5n1/i],['MERS',/\bmers\b/i],['Lassa fever',/lassa/i],['Nipah',/nipah/i],['Japanese encephalitis',/japanese encephalitis/i],['West Nile',/west nile/i]];
+function dzText(r){ return (r.vector||'')+' | '+(r.alerts||[]).map(a=>a[1]).join(' | '); }
+const DZ_OTHER='Other CDC notices';
+function dzMatch(r,label){ if(label===DZ_OTHER) return (r.alerts||[]).some(a=>!DZ.some(d=>d[1].test(a[1]))); const d=DZ.find(x=>x[0]===label); if(!d) return true; if(d[2]&&r[d[2]]) return true; return d[1].test(dzText(r)); }
+function dzCounts(){ return [...DZ.map(d=>d[0]),DZ_OTHER].map(l=>[l,D.filter(r=>dzMatch(r,l)).length]).filter(x=>x[1]); }
+function fillDz(){ const el=document.getElementById('fdz'); if(!el) return; const cur=el.value, L=dzCounts();
+ el.innerHTML='<option value="">All diseases</option>'+L.map(([l,n])=>`<option value="${esc(l)}">${esc(l)} (${n})</option>`).join('');
+ el.value=L.some(x=>x[0]===cur)?cur:''; }
+// AI note and version badge move to a strip at the bottom of the window
+(function(){ const f=document.createElement('div'); f.id='appFoot'; f.appendChild(document.getElementById('aiNote'));
+ const vb=document.getElementById('verBadge'); if(vb) f.appendChild(vb); document.body.appendChild(f);
+ const setFH=()=>{ document.documentElement.style.setProperty('--footH',f.offsetHeight+'px'); fitMap(); };
+ setFH(); if(window.ResizeObserver) new ResizeObserver(setFH).observe(f); })();
+// Disease and Country A–Z dropdowns above the map (and the profile cards)
+(function(){ const main=document.querySelector('main.mainv'); const bar=document.createElement('div'); bar.id='fbar2'; bar.className='fbar2';
+ let last='', opts=''; [...D].sort((a,b)=>a.name.localeCompare(b.name)).forEach(r=>{ const L0=r.name[0].toUpperCase();
+  if(L0!==last){ if(last) opts+='</optgroup>'; opts+=`<optgroup label="${esc(L0)}">`; last=L0; }
+  opts+=`<option value="${r.ioc}">${esc(r.name)}${r.alevel?` · Level ${r.alevel}`:''}</option>`; }); opts+='</optgroup>';
+ bar.innerHTML=`<label class="f2"><span>🦠 Disease</span><select id="fdz" title="Destinations with this disease in a CDC travel notice, a global notice, or the mosquito-borne risk field"><option value="">All diseases</option></select></label>
+  <label class="f2"><span>🔤 Country A–Z</span><select id="faz" title="Jump to a destination"><option value="">Jump to a destination…</option></select></label>
+  <span class="f2cnt" id="f2cnt"></span><span class="f2chips" id="f2chips"></span>`;
+ main.insertBefore(bar,main.firstChild); fillDz();
+ document.getElementById('fdz').addEventListener('change',()=>render());
+ document.getElementById('faz').addEventListener('change',e=>{ if(e.target.value) focusDest(e.target.value); });
+ document.getElementById('f2chips').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.clr==='__all'){ document.getElementById('clr').click(); return; }
+  const el=document.getElementById(b.dataset.clr); if(el){ el.value=''; if(b.dataset.clr==='fa') fillSubs(); } render(); });
+ const _sd=selectDest; selectDest=function(ioc,o){ const x=_sd(ioc,o); const f=document.getElementById('faz'); if(f) f.value=BYIOC[ioc]?ioc:''; return x; };
+ document.getElementById('selClr').addEventListener('click',()=>{ document.getElementById('faz').value=''; });
+})();
+function upd2(){ const c=document.getElementById('f2cnt'); if(!c) return; c.textContent=`Showing ${LASTRS.length} of ${D.length} destinations`;
+ const lab={q:'Text',fa:'Continent',fsr:'Region',ftr:'Transit',fn:'CDC notice',fdz:'Disease',fv:'Mosquito-borne'};
+ const chips=Object.keys(lab).map(id=>{ const el=document.getElementById(id); if(!el||!el.value) return '';
+  const v=el.tagName==='SELECT'?el.options[el.selectedIndex].text.replace(/\s*\(\d+\)$/,''):'“'+el.value+'”';
+  return `<span class="f2chip">${lab[id]}: ${esc(v)}<button type="button" data-clr="${id}" title="Remove this filter">✕</button></span>`; }).join('');
+ document.getElementById('f2chips').innerHTML=chips+(chips?'<button type="button" class="f2clr" data-clr="__all">Clear all</button>':''); }
+const _render29=render; render=function(){ _render29(); fillDz(); fillAz(); upd2(); if(typeof SEL!=='undefined'&&SEL&&BYIOC[SEL]) infoSelFill(SEL); };
+// header: Search / Hierarchy buttons open the left pane; one search box
+const sideOpen=()=>!document.body.classList.contains('side-min');
+const curPane=()=>document.getElementById('paneTree').hidden?'search':'tree';
+function syncTop(){ document.querySelectorAll('.pbtns button').forEach(b=>{ const on=sideOpen()&&curPane()===b.dataset.open; b.classList.toggle('on',on); b.setAttribute('aria-pressed',on); });
+ const t=document.querySelector('.ptitle'); if(t) t.textContent=curPane()==='tree'?'🌳 Hierarchy':'🔎 Search'; }
+function openSide(p){ const b=document.querySelector(`.ptabs button[data-p="${p}"]`); if(b) b.click(); if(!sideOpen()) document.getElementById('sideShow').click(); syncTop(); }
+let RES=[];
+function uSearch(q){ const k=CN(q), out={dest:[],reg:[],dz:[],city:[]}; if(k.length<2) return out;
+ const hit=s=>{ const n=CN(s||''); return !!n&&(n===k||n.startsWith(k)||n.includes(' '+k)); };
+ D.forEach(r=>{ let s=-1; if(CN(r.name)===k||CN(r.ioc)===k||CN(r.code||'')===k) s=3; else if(hit(r.name)||(r.aliases||[]).some(hit)||hit(r.sov)) s=2; else if(hit(r.capital)) s=1;
+  if(s>=0) out.dest.push([s,r]); });
+ out.dest=out.dest.sort((a,b)=>b[0]-a[0]||a[1].name.localeCompare(b[1].name)).map(x=>x[1]);
+ assocs.forEach(c=>{ if(hit(c)) out.reg.push({t:'Continent',v:c,n:D.filter(r=>r.assoc===c).length}); });
+ SUBORD.forEach(s=>{ const L=D.filter(r=>r.sub===s); if(L.length&&hit(s)) out.reg.push({t:'Region',v:s,a:L[0].assoc,n:L.length}); });
+ dzCounts().forEach(([l,n])=>{ if(hit(l)||CN(l).split(' ').some(w=>w.startsWith(k))) out.dz.push({v:l,n}); });
+ out.city=citySearch(q).slice(0,6); return out; }
+function showRes(q){ const el=document.getElementById('sres'); RES=[]; if(!q.trim()){ el.hidden=true; el.innerHTML=''; return; }
+ const o=uSearch(q);
+ const item=(ic,main,sub,badge,act)=>{ const i=RES.push(act)-1; return `<button type="button" class="sri" data-i="${i}"><span class="sic">${ic}</span><span class="stx"><b>${main}</b>${sub?`<small>${sub}</small>`:''}</span>${badge||''}</button>`; };
+ const sec=(t,rows)=>rows.length?`<div class="srh2">${t}</div>${rows.join('')}`:'';
+ const lv=r=>r.alevel?`<span class="tb L${r.alevel}">L${r.alevel}</span>`:'';
+ const dest=o.dest.slice(0,10).map(r=>item(r.flag?`<img src="${r.flag}" alt="">`:esc(r.ioc),esc(r.name),`${esc(r.sub||r.assoc)} · capital ${esc(r.capital)}`,lv(r),()=>focusDest(r.ioc)));
+ const reg=o.reg.map(g=>item('🌍',esc(g.v),`${g.t} · ${g.n} destinations · filter`,'',()=>{ const fa=document.getElementById('fa'), fsr=document.getElementById('fsr');
+  fa.value=g.t==='Continent'?g.v:g.a; fillSubs(); fsr.value=g.t==='Region'?g.v:''; render(); }));
+ const dz=o.dz.map(d=>item('🦠',esc(d.v),`${d.n} destinations · CDC notices or mosquito-borne risk · filter`,'',()=>{ document.getElementById('fdz').value=d.v; render(); }));
+ const city=o.city.map(h=>{ const r=BYIOC[ISO2IOC[h.cc]]; const cn=r?r.name.replace(/\s*\(.*?\)/g,''):CNAME(h.cc);
+  return item('📍',esc(h.name),`${esc(cn)}${h.pop?' · city population '+fmtPop(h.pop):''}${h.cc==='US'?' · not a CDC destination':''}`,r?lv(r):'',()=>{ goCity(h); document.getElementById('uq').value=h.name; }); });
+ const qEl=document.getElementById('q'), old=qEl.value; qEl.value=q.trim(); const tn=filt().length; qEl.value=old;
+ const txt=tn?[item('🔎',`All destinations mentioning “${esc(q.trim())}”`,`${tn} destinations · names, capitals, languages, airports, consulate cities · filter`,'',()=>{ qEl.value=q.trim(); render(); })]:[];
+ const body=sec('Destinations',dest)+sec('Continents and regions',reg)+sec('Diseases',dz)+sec('Cities',city)+sec('Text search',txt);
+ el.innerHTML=`<div class="srt"><span>Results for “${esc(q.trim())}”</span><button type="button" id="sresX" title="Clear the search box">✕ Clear</button></div>`+(body||'<div class="snone">No matches. Try a country, continent, region (for example “Western Africa”), city, or disease.</div>');
+ el.hidden=false; }
+(function(){
+ document.querySelector('.ptabs').insertAdjacentHTML('afterbegin','<span class="ptitle">🔎 Search</span>');
+ const ps=document.getElementById('paneSearch'); ps.querySelector('.sideh').insertAdjacentHTML('afterend','<div id="sres" class="sres" hidden></div>');
+ const qfg=document.getElementById('q').closest('.fg'); if(qfg) qfg.style.setProperty('display','none','important');
+ const nav=document.querySelector('.hdrnav'), tabs=nav.querySelector('.tabs');
+ const pb=document.createElement('div'); pb.className='pbtns'; pb.setAttribute('role','group'); pb.setAttribute('aria-label','Left pane');
+ pb.innerHTML='<button type="button" data-open="search" title="Open or close the Search pane">🔎 Search</button><button type="button" data-open="tree" title="Open or close the Hierarchy pane (continent, region, destination)">🌳 Hierarchy</button>';
+ const ub=document.createElement('div'); ub.className='ubox';
+ ub.innerHTML='<input id="uq" type="search" autocomplete="off" placeholder="Search a country, continent, region, city, or disease" aria-label="Search a country, continent, region, city, or disease">';
+ nav.insertBefore(pb,tabs); nav.insertBefore(ub,tabs);
+ pb.addEventListener('click',e=>{ const b=e.target.closest('button[data-open]'); if(!b) return; const p=b.dataset.open;
+  if(sideOpen()&&curPane()===p) document.getElementById('sideHide').click(); else openSide(p); syncTop(); });
+ document.getElementById('sideHide').addEventListener('click',()=>setTimeout(syncTop,0));
+ const uq=document.getElementById('uq'); let ut, act=-1;
+ const mark=()=>document.querySelectorAll('#sres .sri').forEach((x,i)=>x.classList.toggle('act',i===act));
+ uq.addEventListener('input',()=>{ clearTimeout(ut); ut=setTimeout(()=>{ if(uq.value.trim()&&(!sideOpen()||curPane()!=='search')) openSide('search'); act=-1; showRes(uq.value); },150); });
+ uq.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'||e.key==='ArrowUp'){ if(!RES.length) return; e.preventDefault(); act=(act+(e.key==='ArrowDown'?1:-1)+RES.length)%RES.length; mark(); }
+  if(e.key==='Enter'){ e.preventDefault(); clearTimeout(ut); showRes(uq.value); if(RES.length) RES[Math.max(0,act)](); }
+  if(e.key==='Escape'){ uq.value=''; showRes(''); } });
+ ps.addEventListener('click',e=>{ if(e.target.closest('#sresX')){ uq.value=''; showRes(''); uq.focus(); return; }
+  const b=e.target.closest('#sres .sri'); if(!b) return; act=+b.dataset.i; mark(); RES[act](); });
+ syncTop(); upd2();
+})();
+// ================= v30: CDC notice dropdown above the map; A–Z labels follow the current notices =================
+function fillAz(){ const el=document.getElementById('faz'); if(!el) return; const cur=el.value; let last='', h='<option value="">Jump to a destination…</option>';
+ [...D].sort((a,b)=>a.name.localeCompare(b.name)).forEach(r=>{ const L0=r.name[0].toUpperCase();
+  if(L0!==last){ if(last) h+='</optgroup>'; h+=`<optgroup label="${esc(L0)}">`; last=L0; }
+  h+=`<option value="${r.ioc}">${esc(r.name)}${r.alevel?` · Level ${r.alevel}`:''}</option>`; });
+ el.innerHTML=h+'</optgroup>'; el.value=cur&&BYIOC[cur]?cur:''; }
+(function(){ const fn=document.getElementById('fn'), fg=fn.closest('.fg'); const bar=document.getElementById('fbar2');
+ const lab=document.createElement('label'); lab.className='f2'; lab.innerHTML='<span>⚠ CDC travel notice</span>'; lab.appendChild(fn);
+ fn.title='Filter by the highest current CDC Travel Health Notice level, or the Global Polio notice';
+ fn.options[0].text='All notice levels';
+ bar.insertBefore(lab,bar.firstChild); if(fg) fg.remove(); fillAz(); })();
+// after Refresh from CDC (or revert), redraw the open details card beside the selected country so it shows the new notices
+const _ds30=drawStats; drawStats=function(){ _ds30(); if(typeof SEL!=='undefined'&&SEL&&sideCard&&map) setTimeout(()=>showSide(SEL),50); };
 render(); setTab('map'); window.setBaseP&&setBaseP('street');
 </script>
 
