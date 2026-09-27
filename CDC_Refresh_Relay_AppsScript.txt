@@ -1,0 +1,36 @@
+CDC REFRESH RELAY — Google Apps Script (free, about 5 minutes)
+==============================================================
+Why: web browsers block a page from reading another website unless that site allows it. CDC's travel site
+usually does not, so the app's "Refresh from CDC" button may need a small relay. This relay runs in your
+Google account, reads only CDC Travelers' Health pages, and hands the page back to the app.
+
+1. Go to https://script.google.com and click New project.
+2. Delete the sample code and paste everything between the lines below.
+3. Click Save. Name the project "CDC Refresh Relay".
+4. Click Deploy > New deployment > gear icon > Web app.
+     Description: CDC relay
+     Execute as: Me
+     Who has access: Anyone   (the app opens as a local file, so it cannot sign in)
+5. Click Deploy, approve the permission prompt (it asks to connect to an external service), and copy the
+   Web app URL. It ends in /exec.
+6. In the CDC app, click ⚙ next to "Refresh from CDC", paste the URL, then click Refresh from CDC.
+
+Check with your organization's IT or security policy before deploying a public web app.
+The relay only accepts addresses that start with https://wwwnc.cdc.gov/travel/ .
+
+------------------------------ paste below this line ------------------------------
+function doGet(e) {
+  var DEFAULT_URL = 'https://wwwnc.cdc.gov/travel/notices';
+  var url = (e && e.parameter && e.parameter.src) ? String(e.parameter.src) : DEFAULT_URL;
+  if (url.indexOf('https://wwwnc.cdc.gov/travel/') !== 0) url = DEFAULT_URL;   // CDC Travelers' Health only
+  var out;
+  try {
+    var res = UrlFetchApp.fetch(url, {muteHttpExceptions: true, followRedirects: true});
+    out = {ok: res.getResponseCode() === 200, status: res.getResponseCode(), url: url,
+           fetched: new Date().toISOString(), body: res.getContentText()};
+  } catch (err) {
+    out = {ok: false, url: url, error: String(err)};
+  }
+  return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(ContentService.MimeType.JSON);
+}
+------------------------------ paste above this line ------------------------------
