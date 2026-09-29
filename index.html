@@ -1313,6 +1313,36 @@ details.pc{scroll-margin-top:calc(var(--hdrH,0px) + 10px)}
 body:not(.tab-map) #pnav{display:block}
 #pnav button{border:0;border-radius:999px;padding:8px 14px;background:#fff;color:#0B1F3A;font:800 12.5px var(--sans);box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer;border:1px solid #cfd6de}
 #pnav button:hover{background:#FFF1D6}
+
+/* v60 */
+.ms{display:flex;flex-direction:column;gap:4px}
+.ms .msy{display:flex;gap:4px;flex-wrap:wrap}
+.ms .msy span{display:inline-flex;flex-direction:column;align-items:center;min-width:52px;padding:3px 6px;border-radius:6px;background:#F1F4F8;border:1px solid #dde3ea;font-size:11px;color:#5B6B7E;line-height:1.2}
+.ms .msy span b{font-size:12.5px;color:#0B1F3A}
+.ms .msy span.rec{background:#fff;border-color:#b9c4d1}
+.mst{display:inline-flex;align-items:center;gap:4px;padding:1px 8px;border-radius:999px;font:800 11.5px var(--sans);white-space:nowrap}
+.mst.up{background:#FBE3E1;color:#9B1C1C}.mst.down{background:#E3F4EA;color:#1D6B3A}.mst.flat{background:#EEF2F7;color:#34465c}
+.ms small{color:#5B6B7E}
+.ltms{font-size:12px;margin:4px 0 0;padding:0 10px;color:#0B1F3A}
+
+/* v61 */
+#appFoot{background:transparent!important;border:0!important;box-shadow:none!important;padding:0 12px 8px!important;justify-content:flex-end!important;gap:8px!important;pointer-events:none;left:auto!important}
+#appFoot>*{pointer-events:auto}
+#appFoot .ainote{display:none!important}
+#appFoot #aboutBtn{margin:0!important;background:#0B1F3A!important;color:#fff!important;border:1px solid #0B1F3A!important;padding:4px 12px!important;border-radius:999px!important;font:700 12px var(--sans)!important;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#appFoot #aboutBtn:hover,#appFoot #aboutBtn[aria-expanded=true]{background:#E8A33D!important;color:#081729!important;border-color:#E8A33D!important}
+#appFoot #verBadge{position:static!important;background:#fff!important;color:#0B1F3A!important;border:1px solid #cfd6de!important;border-radius:999px!important;padding:4px 10px!important;font:700 11.5px var(--sans)!important;box-shadow:0 2px 8px rgba(0,0,0,.18);max-width:none!important}
+#toTop{bottom:calc(var(--footH,34px) + 10px)!important}
+#pnav{bottom:calc(var(--footH,34px) + 58px)!important}
+@media(max-width:900px){ body.mob #appFoot{padding:0 8px 6px!important} body.mob #appFoot #verBadge{font-size:10.5px!important} }
+
+/* v62 */
+#appFoot{display:none!important}
+.hdrnav .hmeta{margin-left:auto;display:inline-flex;align-items:center;gap:6px}
+.hdrnav .hmeta #aboutBtn{margin:0!important;background:rgba(255,255,255,.12)!important;color:#fff!important;border:1px solid rgba(255,255,255,.4)!important;padding:4px 11px!important;border-radius:999px!important;font:700 12px var(--sans)!important;box-shadow:none}
+.hdrnav .hmeta #aboutBtn:hover,.hdrnav .hmeta #aboutBtn[aria-expanded=true]{background:#fff!important;color:#0B1F3A!important}
+.hdrnav .hmeta #verBadge{position:static!important;background:transparent!important;color:#c3cee0!important;border:1px solid rgba(255,255,255,.25)!important;border-radius:999px!important;padding:3px 9px!important;font:700 11px var(--sans)!important;box-shadow:none!important}
+@media(max-width:900px){ body.mob .hdrnav .hmeta{grid-column:1 / -1;justify-content:flex-end} }
 </style>
 <style>
 :root{--navy:#0B1F3A;--navy-light:#16335c;--navy-deep:#081729;--amber:#E8A33D;--teal:#2EC4B6;--teal-deep:#1f9d92;
@@ -1408,7 +1438,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 <header>
  <div class="hrow"><div>
   <h1><a class="olink" href="https://wwwnc.cdc.gov/travel/destinations/list" target="_blank" rel="noopener" title="CDC Travelers' Health destination list">Travelers’ Health<span class="ext">↗</span></a> and Public Health Profiles for Port Health Station Staff</h1>
- </div><div class="hdr-r"><div class="draft" role="note" title="Draft prototype: data and features are under development and not for operational use">⚠ DRAFT – PROTOTYPE</div><div class="upd">Last updated <b id="upd"></b></div><div class="rfbar"><button id="rfBtn" title="Reload CDC Travel Health Notices now">↻ Refresh from CDC</button></div><div id="rfMsg" class="rfmsg" role="status" aria-live="polite"></div></div></div>
+ </div><div class="hdr-r"><div class="draft" role="note" title="Draft prototype: data and features are under development and not for operational use">⚠ DRAFT – PROTOTYPE</div><div class="upd">Last updated <b id="upd"></b></div><div class="rfbar"><button id="rfBtn" title="Reload the latest Travel Health Notices from the CDC Travelers’ Health (travel alert) website">↻ Refresh CDC Travel Alerts</button></div><div id="rfMsg" class="rfmsg" role="status" aria-live="polite"></div></div></div>
  <div class="stats" id="stats"></div>
 </header>
 <button id="sideToggle" class="sidetog" aria-controls="side" aria-expanded="false">☰ Filters</button>
@@ -1605,7 +1635,7 @@ function card(r){
   ${r.special?`<div class="sp">${esc(r.special)}</div>`:''}
   <section><h4>🩺 Health alerts and disease risk</h4>
    ${al||'<div class="rw"><span class="v">No country-specific CDC Travel Health Notice right now.</span></div>'}
-   ${glob.length?row('Global notices',glob.map(esc).join('; ')):''}${row('Measles data (WHO)',L(WHO_MEASLES,'Measles – number of reported cases (WHO Global Health Observatory) ↗'))}${PX(r).c?row('Current public health concerns',`<b>${PX(r).c}</b>`):''}${EBOLA_ROUTE.includes(r.ioc)?row('Enhanced entry screening',EBOLA_TXT):''}
+   ${glob.length?row('Global notices',glob.map(esc).join('; ')):''}${row('Measles cases reported to WHO',msRow(r))}${PX(r).c?row('Current public health concerns',`<b>${PX(r).c}</b>`):''}${EBOLA_ROUTE.includes(r.ioc)?row('Enhanced entry screening',EBOLA_TXT):''}
    ${row('Mosquito-borne diseases at home',`<span class="v-${r.vlev}">${esc(r.vector==='Low'?'Low risk':r.vector)}</span>`)}
    ${row('Used to hot weather?',esc(HEATTXT[r.heat_accl]||r.heat_accl))}
    ${row('July weather (summer travel peak)',wxHTML(r,0))}${row('December weather (holiday travel peak)',wxHTML(r,1))}
@@ -1744,7 +1774,7 @@ function setTab(t){tab=t;document.body.classList.toggle('tab-map',t==='map'); se
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.t)));
 let qt;['q','fa','fsr','fn','fv','fs'].forEach(id=>document.getElementById(id).addEventListener(id==='q'?'input':'change',()=>{ if(id==='q'){clearTimeout(qt);qt=setTimeout(render,300);} else render(); }));
 document.getElementById('clr').addEventListener('click',()=>{['q','fa','fsr','ftr','fdz','fphs','fn','fv'].forEach(id=>{const e=document.getElementById(id); if(e) e.value='';});document.getElementById('fs').value='continent';render();});
-document.getElementById('notes').innerHTML=`Destination list: CDC Travelers' Health complete list of destinations (https://wwwnc.cdc.gov/travel/destinations/list), retrieved September 25, 2026; 'see …' entries on that list appear as search aliases on the destination they point to. The retrieved copy of the list was missing sections D–F, H, K–L, N–Q, U, and Y–Z; those destinations were filled from CDC's standard destination list and should be checked against the live page. CDC Travel Health Notices: CDC notices page and search index, refreshed September 24, 2026; Global Polio and Global Measles notice listings from the same retrieval. Destination pages open inside the app in a viewer (or in a new tab); CDC link addresses marked * were generated from the destination name and have not been checked, and every card also links to the CDC destination list. Profile fields (languages, travel time from LAX, time difference, heat acclimatization, mosquito-borne disease risk) come from the LA28 public health profile set and are planning estimates; U.S. embassy addresses come from the list of resident embassies in Washington, D.C., and consulates in eight major U.S. cities (New York, Los Angeles, Chicago, Houston, Miami, San Francisco, Atlanta, Boston) from Wikipedia's list of diplomatic missions in the United States (retrieved September 27, 2026; career consulates only). Territories added from the CDC list have basic fields only. The United States is not a CDC destination and is not listed. The Refresh from CDC button reloads Travel Health Notices on demand, directly or through an optional Google Apps Script relay, and matches each notice to destinations by name; global notices (polio, measles, dengue lists) and destination profile fields are not refreshed by it. Check CDC before operational use.`;
+document.getElementById('notes').innerHTML=`Destination list: CDC Travelers' Health complete list of destinations (https://wwwnc.cdc.gov/travel/destinations/list), retrieved September 25, 2026; 'see …' entries on that list appear as search aliases on the destination they point to. The retrieved copy of the list was missing sections D–F, H, K–L, N–Q, U, and Y–Z; those destinations were filled from CDC's standard destination list and should be checked against the live page. CDC Travel Health Notices: CDC notices page and search index, refreshed September 24, 2026; Global Polio and Global Measles notice listings from the same retrieval. Destination pages open inside the app in a viewer (or in a new tab); CDC link addresses marked * were generated from the destination name and have not been checked, and every card also links to the CDC destination list. Profile fields (languages, travel time from LAX, time difference, heat acclimatization, mosquito-borne disease risk) come from the LA28 public health profile set and are planning estimates; U.S. embassy addresses come from the list of resident embassies in Washington, D.C., and consulates in eight major U.S. cities (New York, Los Angeles, Chicago, Houston, Miami, San Francisco, Atlanta, Boston) from Wikipedia's list of diplomatic missions in the United States (retrieved September 27, 2026; career consulates only). Territories added from the CDC list have basic fields only. The United States is not a CDC destination and is not listed. The Refresh CDC Travel Alerts button reloads Travel Health Notices on demand, directly or through an optional Google Apps Script relay, and matches each notice to destinations by name; global notices (polio, measles, dengue lists) and destination profile fields are not refreshed by it. Check CDC before operational use.`;
 
 function filterSummaryP(){ const f=[['fa','Association'],['fn','CDC notice'],['fv','Vector'],['fh','Heat acclimatization'],['fc','Consular office']]
   .map(([id,l])=>{const el=document.getElementById(id); return el&&el.value?`${l}: ${el.options[el.selectedIndex].text}`:null;}).filter(Boolean);
@@ -1855,18 +1885,18 @@ const RF = (() => {
     const when = Date.now(); store.set('notices', JSON.stringify({when, how:tr.how, notices}));
     const r = apply(notices, when, tr.how);
     msg(`Updated from CDC: ${r.total} notices, ${r.dest} destinations with country notices${r.other?`, ${r.other} global or regional`:''}.`);
-    btn.disabled = false; btn.textContent = '↻ Refresh from CDC'; return;
+    btn.disabled = false; btn.textContent = '↻ Refresh CDC Travel Alerts'; return;
    } catch (e) { last = e.message || String(e); }
   }
   msg(`Could not reach CDC right now (${last}). The notices shown are from ${document.getElementById('upd').textContent}. Please try again later.`, true);
-  btn.disabled = false; btn.textContent = '↻ Refresh from CDC';
+  btn.disabled = false; btn.textContent = '↻ Refresh CDC Travel Alerts';
  }
  function configure(){
   const cur = store.get('relay') || DEFAULT_RELAY;
   const v = prompt('Paste the web app address of your Google Apps Script relay (ends in /exec).\nLeave empty to remove it and try CDC directly.', cur);
   if (v === null) return; const u = v.trim();
   if (u && !/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec/.test(u)) { msg('That does not look like an Apps Script web app address (https://script.google.com/macros/s/…/exec).', true); return; }
-  if (u) store.set('relay', u); else store.del('relay'); msg(u ? 'Relay saved. Click Refresh from CDC.' : 'Using the built-in relay.');
+  if (u) store.set('relay', u); else store.del('relay'); msg(u ? 'Relay saved. Click Refresh CDC Travel Alerts.' : 'Using the built-in relay.');
  }
  document.getElementById('rfBtn').addEventListener('click', refresh);
  
@@ -1907,6 +1937,7 @@ const MAPX={shade:null,flags:{},dots:{},style:'dots',showShade:true,imagery:fals
    <div class="ltl" style="background:${LVC[l]};color:${l===1?'#3d3000':'#fff'}">${l?`CDC Level ${l} · ${LVN[l]}`:'No country-specific CDC notice'}</div>
    ${r.alerts.length?'<ul>'+r.alerts.map(([a,t])=>`<li><b>L${a}</b> ${esc(t)}</li>`).join('')+'</ul>':''}
    ${(r.polio||r.measles)?`<div class="ltg">${[r.polio?'Global Polio notice':'',r.measles?'Global Measles notice':''].filter(Boolean).join(' · ')}</div>`:''}
+   ${msTip(r)}
    <div class="lth2">Click for details</div></div>`; },
  dotIcon(r){ const l=r.alevel||0, sz=l===4?26:l===3?24:l===2?22:l===1?20:14, code=esc(r.code||r.ioc);
   return L.divIcon({className:'',html:`<div class="cdot"><div class="ldot" style="width:${sz}px;height:${sz}px;background:${LVC[l]};${l===1?'color:#3d3000;':''}${l?'':'opacity:.9;'}">${l||''}</div><span class="cdl" style="border-color:${LVC[l]}">${esc(labelName(r))}</span></div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]}); },
@@ -1990,7 +2021,7 @@ function printProfiles(list){
    ${r.special?`<p class="sp">${esc(r.special)}</p>`:''}
    <h3>🩺 Health alerts and disease risk</h3><table>
     ${row('CDC Travel Health Notices',r.alerts.length?r.alerts.map(([l,t])=>`<b>Level ${l}</b> — ${esc(t)}`).join('<br>'):'No country-specific CDC Travel Health Notice right now.')}
-    ${row('Global notices',glob.map(esc).join('<br>'))}${row('Measles data (WHO)',A(WHO_MEASLES,'Measles – number of reported cases (WHO Global Health Observatory)'))}${row('Mosquito-borne diseases at home',esc(r.vector==='Low'?'Low risk':r.vector))}
+    ${row('Global notices',glob.map(esc).join('<br>'))}${row('Measles cases reported to WHO',msPdf(r)+'<br>'+`<a href="${WHO_MEASLES}">WHO data</a> <span class="u">${WHO_MEASLES}</span>`)}${row('Mosquito-borne diseases at home',esc(r.vector==='Low'?'Low risk':r.vector))}
     ${row('Used to hot weather?',esc(HEATTXT[r.heat_accl]||r.heat_accl))}${row('July weather (summer travel peak)',wxHTML(r,0))}${row('December weather (holiday travel peak)',wxHTML(r,1))}
     ${r.pop?row('Country population',fmtBig(r.pop)+(r.popnote?` (${esc(r.popnote)})`:'')+' · UN estimate, mid-2023'):''}</table>
    <h3>✈ Arrival and travel</h3><table>
@@ -2023,7 +2054,7 @@ function printProfiles(list){
   a{color:#0b6e66}.u{color:#8a97a8;font-size:9px;word-break:break-all}</style></head><body>
   <div class="top"><div><b style="font-size:14px">Travelers’ Health and Public Health Profiles for Port Health Station Staff</b><br><span style="color:#5B6B7E">${list.length} profile${list.length>1?'s':''} · printed ${new Date().toLocaleString([], {dateStyle:'medium',timeStyle:'short'})} · CDC data: ${esc(document.getElementById('upd').textContent)}</span></div><span class="dr">⚠ DRAFT – PROTOTYPE</span></div>
   ${list.map(prof).join('')}
-  <p style="color:#5B6B7E;font-size:9px">AI-assisted profile — AI can make mistakes; verify with CDC Travelers' Health (wwwnc.cdc.gov/travel), the primary source of truth. Airport links open live flight information on FlightAware. Travel times are estimates to Washington Dulles (IAD). App v59, built Sep 29, 2026, 10:42 AM ET.</p></body></html>`); d.close();
+  <p style="color:#5B6B7E;font-size:9px">AI-assisted profile — AI can make mistakes; verify with CDC Travelers' Health (wwwnc.cdc.gov/travel), the primary source of truth. Airport links open live flight information on FlightAware. Travel times are estimates to Washington Dulles (IAD). App v62, built Sep 29, 2026, 3:14 PM ET.</p></body></html>`); d.close();
  setTimeout(()=>{ try{ f.contentWindow.focus(); f.contentWindow.print(); }catch(e){ XP.toast('Printing is blocked here.'); } setTimeout(()=>f.remove(),60000); },400);
  XP.toast('Choose "Save as PDF" in the print dialog.',4000); }
 document.addEventListener('click',e=>{ const a=e.target.closest('.prtp'); if(!a) return; e.preventDefault(); e.stopPropagation(); printProfiles([BYIOC[a.dataset.ioc]]); },true);
@@ -2248,7 +2279,7 @@ function intlHTML(r){ const L=r.intl||[]; if(!L.length) return nearHTML(r);
  try{ if(localStorage.getItem(k)==='1') n.classList.add('min'); }catch(e){}
  document.getElementById('aiOk').onclick=()=>{ n.classList.add('min'); try{localStorage.setItem(k,'1')}catch(e){} setTimeout(fitMap,50); };
  n.addEventListener('click',e=>{ if(n.classList.contains('min')&&!e.target.closest('a')&&!e.target.closest('button')){ n.classList.remove('min'); setTimeout(fitMap,50); } });
- document.body.insertAdjacentHTML('beforeend','<div id="verBadge" title="AI-assisted draft prototype — verify with CDC Travelers&#39; Health">CDC Destination Profiles · v59 · Sep 29, 2026, 10:42 AM ET · AI-assisted, verify with CDC</div>');
+ document.body.insertAdjacentHTML('beforeend','<div id="verBadge" title="AI-assisted draft prototype — verify with CDC Travelers&#39; Health">CDC Destination Profiles · v62 · Sep 29, 2026, 3:14 PM ET · AI-assisted, verify with CDC</div>');
 })();
 
 function transitHTML(r){ const L=r.transit||[]; if(!L.length) return '';
@@ -2484,7 +2515,7 @@ function drawSummary(){ const el=document.getElementById('stats'); if(!el) retur
   ` · ${n(r=>!r.alevel)} with none.${(l4.length+l3.length)?` <b>Highest:</b> ${nm([...l4,...l3])}.`:''}</p>`+
   `<p><span class="sk">Global notices</span>Polio ${n(r=>r.polio)} destinations · Measles ${n(r=>r.measles)} destinations. <span class="sk" style="margin-left:6px">Mosquito-borne</span>Dengue ${dz('Dengue')} · Malaria ${dz('Malaria')} · Yellow fever ${dz('Yellow fever')}.</p>`+
   `<p><span class="sk">Travel</span>Most listed U.S. entry airports: ${top('gw',5).map(([c,k])=>`${c} (${k})`).join(', ')}. Most common transit hubs: ${top('transit',5).map(([c,k])=>`${c} (${k})`).join(', ')}.</p>`+
-  `<p><small>${live?'Notices loaded from CDC with Refresh from CDC.':'Built-in CDC notice snapshot ('+esc(document.getElementById('upd').textContent)+'); use Refresh from CDC for the latest.'} Global polio/measles lists and profile fields are built in. Entry and transit airports are regional rules of thumb.</small></p>`;
+  `<p><small>${live?'Notices loaded with Refresh CDC Travel Alerts.':'Built-in CDC notice snapshot ('+esc(document.getElementById('upd').textContent)+'); use Refresh CDC Travel Alerts for the latest.'} Global polio/measles lists and profile fields are built in. Entry and transit airports are regional rules of thumb.</small></p>`;
 }
 document.getElementById('stats').addEventListener('click',e=>{ const b=e.target.closest('button.sl'); if(!b) return; const fn=document.getElementById('fn'); fn.value=b.dataset.f; render(); });
 const _ds32=drawStats; drawStats=function(){ _ds32(); drawSummary(); };
@@ -2513,7 +2544,7 @@ const APP_SENTENCE='This interactive, AI-assisted public health profile covers a
   <ul><li><b>Navigate Regions / Countries</b> or <b>Type a destination</b> to open a destination on the map.</li>
   <li><b>Notice</b> and <b>Disease</b> dropdowns filter the map and profiles; you can type part of a word.</li>
   <li><b>Search</b> finds countries, continents, regions, cities, or diseases; <b>Add to PDF</b> builds a printable set of full profiles.</li>
-  <li>The app opens with its built-in CDC notice snapshot; <b>Refresh from CDC</b> loads the latest country notices on request.</li></ul>
+  <li>The app opens with its built-in CDC notice snapshot; <b>Refresh CDC Travel Alerts</b> loads the latest country notices on request.</li></ul>
   <p>The <a href="https://wwwnc.cdc.gov/travel" target="_blank" rel="noopener">CDC Travelers’ Health website ↗</a> is the primary source of truth. <a href="https://wwwnc.cdc.gov/travel/destinations/list" class="cdcv" data-title="CDC destination list">Open the CDC destination list here</a>. Each destination also links to its page on the <a href="https://travel.state.gov/en/international-travel/travel-advisories.html" target="_blank" rel="noopener">U.S. State Department travel website ↗</a>. General travel-health background: <a href="https://www.who.int/health-topics/travel-and-health" target="_blank" rel="noopener">WHO – Travel and health ↗</a> and <a href="https://www.merckmanuals.com/home/special-subjects/travel-and-health" target="_blank" rel="noopener">Merck Manual – Travel and Health ↗</a>.</p>`;
  document.body.appendChild(p);
  const set=on=>{ p.hidden=!on; b.setAttribute('aria-expanded',on); };
@@ -2803,6 +2834,44 @@ function relHTML(r){ const p=PX(r), f=RELD[r.ioc]; let h=p.r?`${p.r}<br>`:'';
  // AI notice starts as one line (tap it to read more)
  const n=document.getElementById('aiNote'); if(n&&!n.classList.contains('min')){ const ok=document.getElementById('aiOk'); if(ok) ok.click(); }
 })();
+// ================= v60: WHO measles cases and trend =================
+// WHO Global Health Observatory, "Measles – number of reported cases" (WHS3_62), file of Sept 2026; values for 2021..2025
+const MSD={"ABW":[0,0,null,0,null],"COK":[null,null,null,null,null],"LBY":[null,32,257,207,null],"FSM":[null,1,1,null,null],"MCO":[0,null,0,2,null],"MAR":[null,null,null,null,null],"NRU":[null,null,null,0,null],"STP":[0,null,null,null,null],"TUV":[null,null,null,null,null],"ZMB":[55,1755,5653,299,null],"AND":[0,0,0,0,0],"AIA":[0,0,0,0,0],"ATG":[0,0,0,0,0],"BHS":[0,0,0,0,0],"BRB":[0,0,0,0,0],"BMU":[0,0,0,2,0],"BTN":[null,7,10,0,0],"VGB":[0,0,0,0,0],"BRN":[0,0,1,0,0],"CPV":[0,0,0,0,0],"CYM":[0,0,0,0,0],"MAC":[0,0,0,0,0],"COL":[0,0,0,0,0],"CUB":[0,0,0,0,0],"PRK":[null,0,0,0,0],"DMA":[0,0,0,0,0],"DOM":[0,0,0,0,0],"ECU":[0,0,0,0,0],"SWZ":[0,64,3,0,0],"FJI":[null,null,null,null,0],"GRD":[null,0,0,0,0],"GNB":[null,213,5,0,0],"GUY":[0,0,0,0,0],"HTI":[0,0,null,0,0],"HND":[0,null,null,0,0],"ISL":[0,0,0,2,0],"JAM":[0,0,0,0,0],"JOR":[null,457,null,14,0],"KIR":[1,null,null,0,0],"MDV":[0,0,5,2,0],"MLT":[1,0,0,10,0],"MHL":[0,null,0,0,0],"MUS":[0,0,0,0,0],"MSR":[0,0,0,0,0],"NIC":[0,0,0,0,0],"NIU":[null,0,null,null,0],"MKD":[1,0,1,2,0],"PSE":[11,null,3,null,0],"PLW":[null,0,0,0,0],"PAN":[0,0,null,0,0],"PNG":[0,2,12,47,0],"KNA":[0,0,0,0,0],"LCA":[0,0,0,0,0],"VCT":[0,0,null,0,0],"WSM":[0,0,0,0,0],"SMR":[0,0,0,2,0],"SYC":[0,0,0,2,0],"SLB":[null,null,0,null,0],"SUR":[0,0,0,0,0],"TLS":[null,8,7,2,0],"TON":[null,null,12,0,0],"TTO":[0,null,0,0,0],"TKM":[0,0,0,0,0],"TCA":[0,0,0,2,0],"VUT":[0,0,0,0,0],"VEN":[0,0,0,0,0],"CHL":[0,0,1,0,1],"CRI":[0,0,1,0,1],"SLV":[0,0,0,0,1],"FIN":[3,0,1,2,1],"GTM":[0,0,0,0,1],"LVA":[0,0,1,0,1],"LUX":[0,0,0,3,1],"AZE":[0,1,13207,18584,10],"HKG":[1,3,4,9,10],"CIV":[1837,1596,1361,1872,1013],"MRT":[249,96,339,1107,102],"BIH":[null,6,13,7957,103],"EGY":[0,14,267,91,107],"IRN":[103,230,648,449,1072],"SYR":[11,217,744,128,109],"EST":[0,0,4,4,11],"LTU":[0,0,3,30,11],"VNM":[162,23,43,7854,11567],"MWI":[5,29,173,958,1158],"DNK":[0,0,9,25,12],"MNE":[0,0,0,35,12],"UGA":[606,52,399,2180,12990],"POL":[13,27,35,272,120],"SEN":[187,508,564,496,127],"DJI":[0,206,446,60,13],"GMB":[0,58,38,8,13],"URY":[0,0,0,0,13],"MNG":[null,46,0,12,13846],"BGD":[203,311,281,247,132],"GBR":[2,63,493,3426,1347],"SSD":[null,3608,7957,3114,138],"IRQ":[197,12,12331,32494,143],"LBN":[null,null,346,74,15],"UKR":[16,11,66,433,1502],"AUT":[1,1,186,542,152],"ZWE":[282,5532,5532,null,1671],"NER":[9271,12898,1708,2362,17686],"IND":[5700,40967,65150,18530,17995],"CHN":[554,552,621,1272,1770],"GHA":[52,395,2282,1944,1794],"AFG":[2900,5166,2792,9769,18260],"AUS":[0,7,26,57,181],"SOM":[7191,17361,3167,1529,1867],"MDA":[0,null,3,216,193],"BGR":[0,1,0,27,2],"COM":[0,4,51,17,2],"KWT":[3,7,6,7,2],"LKA":[null,0,810,298,2],"ALB":[null,1,13,212,20],"PAK":[10399,8378,17722,24709,20741],"SRB":[1,0,50,892,204],"UZB":[0,7,1176,20940,2041],"AGO":[300,3271,3508,619,2043],"SLE":[170,731,645,129,207],"PRT":[0,0,0,35,21],"NGA":[10649,23983,20143,14999,21270],"TJK":[10,454,294,0,2246],"TUR":[null,103,5088,1582,228],"DEU":[10,15,79,645,234],"ARE":[35,98,484,559,234],"CYP":[1,0,0,28,24],"NPL":[143,130,963,113,24],"MDG":[44,80,355,104,2454],"MLI":[2074,765,364,368,251],"QAT":[1,1,127,55,26],"NAM":[4,31,42,15,264],"JPN":[6,null,null,45,265],"ERI":[25,28,54,10,27],"ZAF":[21,400,1033,931,2778],"DZA":[null,47,203,488,2928],"BWA":[0,1,63,3,3],"HUN":[0,0,1,18,3],"SVN":[0,0,1,17,3],"YEM":[4904,23941,49755,5992,32448],"ARG":[0,2,0,null,36],"IDN":[394,7704,18063,6328,36590],"BEL":[7,8,67,526,371],"BRA":[668,41,0,5,38],"LAO":[2,0,2,1,3855],"RWA":[40,29,108,53,396],"ESP":[2,1,15,227,398],"GRC":[0,0,0,38,4],"NOR":[0,1,2,10,4],"SVK":[0,0,6,4,4],"CZE":[0,0,1,35,40],"BFA":[null,252,680,4397,4099],"CMR":[771,3217,6105,863,4117],"KAZ":[2,4,15111,28147,4240],"BLZ":[0,0,0,0,44],"ARM":[0,0,554,561,45],"KHM":[5,13,11,666,4613],"TCD":[2577,2158,11862,6978,495],"GAB":[134,1293,1167,32,5],"OMN":[0,5,25,13,5],"PER":[0,0,0,2,5],"PRY":[0,1,0,0,50],"PHL":[206,589,2892,3844,5042],"CAN":[0,3,12,147,5072],"IRL":[0,2,4,207,51],"CHE":[0,1,52,97,51],"COG":[160,6718,385,483,519],"GEO":[5,12,39,350,526],"ITA":[9,15,44,1045,533],"BOL":[0,0,0,4,539],"NLD":[0,6,7,202,539],"ETH":[1953,9292,24038,31044,5572],"GIN":[505,417,94,577,567],"NZL":[0,0,null,1,58],"CAF":[286,155,3841,125,612],"BLR":[3,0,193,754,63],"MEX":[0,0,0,7,6579],"RUS":[1,102,13083,22455,6627],"ROU":[2,17,3677,25505,6837],"BHR":[0,18,3,2,7],"HRV":[0,0,3,33,7],"TUN":[7,11,10,16,7],"XKX":[null,0,1,1,72],"BEN":[35,455,478,785,747],"KEN":[266,1774,896,1417,751],"LBR":[250,8300,4604,1053,769],"SDN":[null,1575,1377,1337,7708],"KOR":[0,null,7,49,78],"GNQ":[43,49,270,463,79],"BDI":[369,212,1684,2741,795],"LSO":[368,3,17,2,8],"MOZ":[619,1047,656,1237,823],"SAU":[338,247,2254,1260,826],"FRA":[16,15,117,483,873],"COD":[54471,4380,311500,109419,89100],"KGZ":[3,null,7046,14380,8962],"MMR":[8,10,15,30,9],"SWE":[0,5,11,38,9],"THA":[null,64,64,8202,913],"MYS":[128,209,2002,3791,917],"TGO":[82,722,686,353,928],"TZA":[0,612,2887,992,99],"PYF":[0,0,0,0,null],"GUM":[null,null,0,0,null],"NCL":[null,0,0,0,null],"MNP":[null,null,0,0,null],"TKL":[null,null,null,0,null],"SGP":[null,null,null,12,null],"USA":[14,null,121,null,null],"ISR":[0,0,null,null,null]}, MSY=[2021,2022,2023,2024,2025];
+function msSeries(r){ return MSD[r.iso3]||MSD[r.code]||null; }
+function msTrend(r){ const s=msSeries(r); if(!s) return null;
+ let li=-1; for(let i=4;i>=2;i--) if(s[i]!=null){ li=i; break; } if(li<0) return {none:true};
+ let pi=-1; for(let i=li-1;i>=0;i--) if(s[i]!=null){ pi=i; break; }
+ const L=s[li], P=pi>=0?s[pi]:null, ly=MSY[li], py=pi>=0?MSY[pi]:null; const f=n=>n.toLocaleString('en-US');
+ if(P==null) return {cls:'flat',icon:'●',word:'No earlier year to compare',ly,L,txt:`${ly}: ${f(L)} cases reported.`};
+ if(L===0&&P===0) return {cls:'flat',icon:'▬',word:'No cases',ly,L,txt:`No cases reported in ${py} or ${ly}.`};
+ const pct=Math.round((L-P)/Math.max(P,1)*100);
+ if(L<10&&P<10) return {cls:'flat',icon:'→',word:'Very few cases',ly,L,txt:`${ly}: ${f(L)} case${L===1?'':'s'} (${py}: ${f(P)}).`};
+ if(pct>=20) return {cls:'up',icon:'▲',word:'Increasing',ly,L,txt:`${ly}: ${f(L)} cases, up ${pct.toLocaleString('en-US')}% from ${py} (${f(P)}).`};
+ if(pct<=-20) return {cls:'down',icon:'▼',word:'Decreasing',ly,L,txt:`${ly}: ${f(L)} cases, down ${Math.abs(pct)}% from ${py} (${f(P)}).`};
+ return {cls:'flat',icon:'→',word:'About the same',ly,L,txt:`${ly}: ${f(L)} cases, ${pct>=0?'up':'down'} ${Math.abs(pct)}% from ${py} (${f(P)}).`}; }
+function msRow(r){ const s=msSeries(r), link=`<a href="${WHO_MEASLES}" target="_blank" rel="noopener">WHO data ↗</a>`;
+ if(!s) return `No WHO measles data for this destination. ${link}`;
+ const t=msTrend(r);
+ const yrs=MSY.map((y,i)=>`<span class="${i>=2?'rec':''}">${y}<b>${s[i]==null?'—':s[i].toLocaleString('en-US')}</b></span>`).join('');
+ const badge=t.none?'<span class="mst flat">● No 2023–2025 data reported</span>':`<span class="mst ${t.cls}">${t.icon} ${t.word}</span>`;
+ return `<div class="ms"><div>${badge} ${t.none?'':esc(t.txt)}</div><div class="msy">${yrs}</div><small>— = not reported. ${link}</small></div>`; }
+function msPdf(r){ const s=msSeries(r); if(!s) return 'No WHO measles data for this destination.';
+ const t=msTrend(r); return (t.none?'No 2023–2025 data reported. ':`${t.icon} ${t.word}: ${esc(t.txt)} `)+'<br>'+MSY.map((y,i)=>`${y}: ${s[i]==null?'—':s[i].toLocaleString('en-US')}`).join(' · '); }
+function msTip(r){ const t=msTrend(r); if(!t||t.none) return '';
+ return `<div class="ltms">Measles ${t.ly}: <b>${t.L.toLocaleString('en-US')}</b> reported cases <span class="mst ${t.cls}">${t.icon} ${t.word}</span></div>`; }
+// ================= v61: compact bottom-right About + version =================
+(function(){ const f=document.getElementById('appFoot'), b=document.getElementById('aboutBtn'), v=document.getElementById('verBadge'); if(!f) return;
+ if(v){ const full=v.textContent; const m=full.match(/v(\d+)\s*·\s*([A-Z][a-z]{2} \d{1,2}, \d{4})/); v.title=full; if(m) v.textContent=`v${m[1]} · ${m[2]}`; }
+ if(b){ b.textContent='ⓘ About'; f.insertBefore(b, v||null); b.addEventListener('click',()=>{ if(b.getAttribute('aria-expanded')==='true') window.scrollTo({top:0,behavior:'smooth'}); }); }
+ // 'About this data' (sources, methods, limitations) moves into the About panel
+ const nd=document.getElementById('notes'), ap=document.getElementById('aboutPop'); if(nd&&ap){ const det=nd.closest('details'); if(det){ det.style.margin='8px 0 0'; ap.appendChild(det); } }
+ setTimeout(()=>{ fitMap(); if(typeof mobFit==='function') mobFit(); },80);
+})();
+// ================= v62: About + version in the header =================
+(function(){ const nav=document.querySelector('.hdrnav'), b=document.getElementById('aboutBtn'), v=document.getElementById('verBadge'); if(!nav) return;
+ const m=document.createElement('span'); m.className='hmeta'; if(b) m.appendChild(b); if(v) m.appendChild(v); nav.appendChild(m);
+ document.documentElement.style.setProperty('--footH','0px');
+ setTimeout(()=>{ document.documentElement.style.setProperty('--footH','0px'); fitMap(); if(typeof mobFit==='function') mobFit(); },120); })();
 render(); setTab('map'); window.setBaseP&&setBaseP('street');
 </script>
 
